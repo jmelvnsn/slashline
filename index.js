@@ -35,8 +35,8 @@ app.post('/post', function(req, res){
         response_type: "in_channel",
         "attachments": [
           {
-            "text": "Position: " + data.queryResults.row.position + "\n"
-                  + "Player ID: " + data.queryResults.row.player_id + "\n"
+            "text": "Position: " + data.search_player_all.queryResults.row.position + "\n"
+                  + "Player ID: " + data..search_player_all.queryResults.row.player_id + "\n"
                   + "Condition: " + 'foo',
           }
         ]
