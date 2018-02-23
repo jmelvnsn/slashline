@@ -43,6 +43,7 @@ app.post('/post', function(req, res){
                   {
                     "text": stats.sport_career_hitting.queryResults.row.avg + ' | ' + stats.sport_career_hitting.queryResults.row.obp + ' | ' + stats.sport_career_hitting.queryResults.row.slg + "\n"
                     + mlb_url,
+                    "unfurl_links": true,
                   }
                 ]
               };
