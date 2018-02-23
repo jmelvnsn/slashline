@@ -43,7 +43,7 @@ app.post('/post', function(req, res){
               response_type: "in_channel",
               "attachments": [
                 {
-                  "text": stats.sport_career_hitting.queryResults.row.avg + ' | ' + stats.sport_career_hitting.queryResults.row.obp + ' | ' + stats.sport_career_hitting.queryResults.row.obp,
+                  "text": stats.sport_career_hitting.queryResults.row.avg + ' | ' + stats.sport_career_hitting.queryResults.row.obp + ' | ' + stats.sport_career_hitting.queryResults.row.slg,
                 }
               ]
             };
