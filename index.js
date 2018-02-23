@@ -33,10 +33,10 @@ app.post('/post', function(req, res){
         var player_id = data.search_player_all.queryResults.row.player_id;
         var player_stats_url = 'http://mlb.mlb.com/lookup/json/named.sport_career_hitting.bam?league_list_id=\'mlb\'&game_type=\'R\'&player_id=\'' + player_id + '\'';
         if (player_stats_url) {
-          request(player_stats_url, function (error, response, body, player_id) {
+          request(player_stats_url, function (error, response, body) {
             if (!error && response.statusCode == 200) {
               var stats = JSON.parse(body);
-              var mlb_url = 'http://m.mlb.com/player/' + player_id;
+              var mlb_url = 'http://m.mlb.com/player/' + stats.sport_career_hitting.queryResults.row.player_id;
               var body = {
                 response_type: "in_channel",
                 "attachments": [
