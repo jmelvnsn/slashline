@@ -4,7 +4,6 @@ var url = require('url');
 var request = require('request');
 
 var format = ".json";
-//var apikey = process.env.WU_ACCESS; //WU API key; will be set in Heroku
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -23,27 +22,40 @@ app.post('/post', function(req, res){
   //take a message from Slack slash command
   var query = req.body.text;
 
-  var parsed_url = url.format({
+  var player_url = url.format({
     pathname: 'http://mlb.mlb.com//lookup/json/named.search_player_all.bam?sport_code=\'mlb\'&name_part=\'' + req.body.text + '\''
-    //'http://api.wunderground.com/api/' + apikey + '/conditions/q/' + req.body.text + format,
   });
 
-  request(parsed_url, function (error, response, body) {
+  var player_url = url.format({
+    pathname: 'http://mlb.mlb.com//lookup/json/named.search_player_all.bam?sport_code=\'mlb\'&name_part=\'' + req.body.text + '\''
+  });
+
+  request(player_url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
-      var body = {
-        response_type: "in_channel",
-        "attachments": [
-          {
-            "text": "Position: " + data.search_player_all.queryResults.row.position + "\n"
-                  + "Player ID: " + data.search_player_all.queryResults.row.player_id + "\n"
-                  + "Condition: " + 'foo',
+      var player_id_url = 'http://mlb.mlb.com/lookup/json/named.player_info.bam?sport_code=\'mlb\'&player_id=\'' + data.search_player_all.queryResults.row.player_id + '\''
+      if (player_id_url) {
+        request(player_id_url, function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            var player_stats = JSON.parse(body);
+            var body = {
+              response_type: "in_channel",
+              "attachments": [
+                {
+                  "text": "Name: " + player_stats.player_info.queryResults.row.name_display_first_last_html + "\n"
+                        + "Player ID: " + 'Null' + "\n"
+                        + "Player ID: " + 'Null' + "\n"
+                        + "Condition: " + 'Null',
+                }
+              ]
+            };
+            res.send(body);
           }
-        ]
+        });        
       };
-      res.send(body);
     }
   });
+
 });
 
 //tells Node which port to listen on
