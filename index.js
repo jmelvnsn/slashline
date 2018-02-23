@@ -33,16 +33,17 @@ app.post('/post', function(req, res){
   request(player_url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
-      var player_id_url = 'http://mlb.mlb.com/lookup/json/named.player_info.bam?sport_code=\'mlb\'&player_id=\'' + data.search_player_all.queryResults.row.player_id + '\''
-      if (player_id_url) {
-        request(player_id_url, function (error, response, body) {
+      var player_id = data.search_player_all.queryResults.row.player_id;
+      var player_stats_url = 'http://mlb.mlb.com/lookup/json/named.sport_career_hitting.bam?league_list_id=\'mlb\'&game_type=\'R\'&player_id=\'' + player_id + '\'';
+      if (player_stats_url) {
+        request(player_stats_url, function (error, response, body) {
           if (!error && response.statusCode == 200) {
-            var player_stats = JSON.parse(body);
+            var stats = JSON.parse(body);
             var body = {
               response_type: "in_channel",
               "attachments": [
                 {
-                  "text": "Name: " + player_stats.player_info.queryResults.row.name_display_first_last_html + "\n"
+                  "text": "Average: " + stats.sport_career_hitting.queryResults.row.avg + "\n"
                         + "Player ID: " + 'Null' + "\n"
                         + "Player ID: " + 'Null' + "\n"
                         + "Condition: " + 'Null',
