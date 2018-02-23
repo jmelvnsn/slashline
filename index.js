@@ -43,10 +43,7 @@ app.post('/post', function(req, res){
               response_type: "in_channel",
               "attachments": [
                 {
-                  "text": "Average: " + stats.sport_career_hitting.queryResults.row.avg + "\n"
-                        + "Player ID: " + 'Null' + "\n"
-                        + "Player ID: " + 'Null' + "\n"
-                        + "Condition: " + 'Null',
+                  "text": stats.sport_career_hitting.queryResults.row.avg + '|' + stats.sport_career_hitting.queryResults.row.obp + '|' + stats.sport_career_hitting.queryResults.row.obp,
                 }
               ]
             };
