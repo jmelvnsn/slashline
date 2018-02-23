@@ -1,7 +1,7 @@
 {
-  "name": "slack-weather",
+  "name": "slack-slashline",
   "version": "1.0.0",
-  "description": "_A Slackbot that gets weather conditions",
+  "description": "A Slackbot that returns a career MLB slashline: AVG | OBP | SLG",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.14.2",
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryadav88/slack-weather.git"
+    "url": "git@github.com:jmelvnsn/slashline.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ryadav88/slack-weather/issues"
+    "url": "https://github.com/jmelvnsn/slashline/issues"
   },
-  "homepage": "https://github.com/ryadav88/slack-weather#readme"
+  "homepage": "https://github.com/jmelvnsn/slashline#readme"
 }
