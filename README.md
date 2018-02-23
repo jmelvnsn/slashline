@@ -1,6 +1,6 @@
 # slashline
 
-https://i.imgur.com/AJpQkOk.png
+![Slashline](https://i.imgur.com/AJpQkOk.png)
 
 Slack Command App To Get An MLB Player Slash Line
 
