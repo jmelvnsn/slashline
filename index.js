@@ -26,10 +26,6 @@ app.post('/post', function(req, res){
     pathname: 'http://mlb.mlb.com//lookup/json/named.search_player_all.bam?sport_code=\'mlb\'&name_part=\'' + req.body.text + '\''
   });
 
-  var player_url = url.format({
-    pathname: 'http://mlb.mlb.com//lookup/json/named.search_player_all.bam?sport_code=\'mlb\'&name_part=\'' + req.body.text + '\''
-  });
-
   request(player_url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
