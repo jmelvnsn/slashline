@@ -4,7 +4,7 @@ var url = require('url');
 var request = require('request');
 
 var format = ".json";
-var apikey = process.env.WU_ACCESS; //WU API key; will be set in Heroku
+//var apikey = process.env.WU_ACCESS; //WU API key; will be set in Heroku
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -24,14 +24,14 @@ app.post('/post', function(req, res){
   var query = req.body.text;
 
   var parsed_url = url.format({
-    pathname: 'http://api.wunderground.com/api/' + apikey + '/conditions/q/' + req.body.text + format,
+    pathname: 'http://mlb.mlb.com//lookup/json/named.search_player_all.bam?sport_code=\'mlb\'&name_part=\'' + req.body.text + '\''
+    //'http://api.wunderground.com/api/' + apikey + '/conditions/q/' + req.body.text + format,
   });
-
-  console.log(parsed_url);
 
   request(parsed_url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
+      console.log(data);
       var temperature = data.current_observation.temperature_string;
       var weatherCondition = data.current_observation.weather;
       var icon_url = data.current_observation.icon_url;
