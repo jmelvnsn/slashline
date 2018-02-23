@@ -36,18 +36,24 @@ app.post('/post', function(req, res){
           request(player_stats_url, function (error, response, body) {
             if (!error && response.statusCode == 200) {
               var stats = JSON.parse(body);
-              var mlb_url = 'http://m.mlb.com/player/' + stats.sport_career_hitting.queryResults.row.player_id;
-              var body = {
-                response_type: "in_channel",
-                "attachments": [
-                  {
-                    "text": stats.sport_career_hitting.queryResults.row.avg + ' | ' + stats.sport_career_hitting.queryResults.row.obp + ' | ' + stats.sport_career_hitting.queryResults.row.slg + "\n"
-                    + mlb_url,
-                    "unfurl_links": true,
-                  }
-                ]
-              };
-              res.send(body);
+              // Tim Tebow Caused This
+              if(stats.sport_career_hitting.queryResults.totalSize !== '0') {
+                var mlb_url = 'http://m.mlb.com/player/' + stats.sport_career_hitting.queryResults.row.player_id;
+                var body = {
+                  response_type: "in_channel",
+                  "attachments": [
+                    {
+                      "text": stats.sport_career_hitting.queryResults.row.avg + ' | ' + stats.sport_career_hitting.queryResults.row.obp + ' | ' + stats.sport_career_hitting.queryResults.row.slg + "\n"
+                      + mlb_url,
+                      "unfurl_links": true,
+                    }
+                  ]
+                };
+                res.send(body);
+              } else {
+                res.send('No results for that guy');
+                return;
+              }
             }
           });
         }
