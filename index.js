@@ -31,20 +31,13 @@ app.post('/post', function(req, res){
   request(parsed_url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
-      console.log(data);
-      var temperature = data.current_observation.temperature_string;
-      var weatherCondition = data.current_observation.weather;
-      var icon_url = data.current_observation.icon_url;
-      var location = data.current_observation.display_location.full;
-
       var body = {
         response_type: "in_channel",
         "attachments": [
           {
-            "text": "Location: " + location + "\n"
-                  + "Temperature: " + temperature + "\n"
-                  + "Condition: " + weatherCondition,
-            "image_url": icon_url,
+            "text": "Location: " + data + "\n"
+                  + "Temperature: " + 'foo' + "\n"
+                  + "Condition: " + 'foo',
           }
         ]
       };
