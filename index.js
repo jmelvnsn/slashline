@@ -36,7 +36,7 @@ app.post('/post', function(req, res){
         "attachments": [
           {
             "text": "Position: " + data.search_player_all.queryResults.row.position + "\n"
-                  + "Player ID: " + data..search_player_all.queryResults.row.player_id + "\n"
+                  + "Player ID: " + data.search_player_all.queryResults.row.player_id + "\n"
                   + "Condition: " + 'foo',
           }
         ]
