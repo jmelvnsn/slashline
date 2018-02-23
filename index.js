@@ -29,7 +29,7 @@ app.post('/post', function(req, res){
   request(player_url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
-      if(typeof data.search_player_all.queryResults.row.player_id !== 'undefined') {
+      if(data.search_player_all.queryResults.totalSize !== 0) {
         var player_id = data.search_player_all.queryResults.row.player_id;
         var player_stats_url = 'http://mlb.mlb.com/lookup/json/named.sport_career_hitting.bam?league_list_id=\'mlb\'&game_type=\'R\'&player_id=\'' + player_id + '\'';
         if (player_stats_url) {
