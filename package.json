@@ -4,10 +4,10 @@
   "description": "A Slackbot that returns a career MLB slashline: AVG | OBP | SLG",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.14.2",
-    "ejs": "^2.5.7",
-    "express": "4.13.3",
-    "request": "^2.67.0"
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "request": "^2.88.0"
   },
   "devDependencies": {},
   "scripts": {
